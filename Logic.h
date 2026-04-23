@@ -10,6 +10,10 @@ class Logic
 private:
 
 	int choose;
+	int chooseMenage;
+	int chooseSearch;
+	int chooseSort;
+	int chooseOthers;
 	std::string id;
 	std::string add;
 	std::string title;
@@ -31,6 +35,9 @@ public:
 	void sortByBookTitle(std::vector<Book>&books);
 	void choice(std::vector<Book>& books);
 	void deleteBook(std::vector<Book>& books);
+	void searchAuthor(std::vector<Book>& books);
+	void searchTitle(std::vector<Book>& books);
+	void searchSerialNumber(std::vector<Book>& books);
 	
 };
 
