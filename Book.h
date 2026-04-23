@@ -1,11 +1,13 @@
 #pragma once
+#include <iostream>
+#include<string>
 class Book
 {
 private:
-	std::string title, author;
 public:
-	Book(const std::string& title, const std::string& author)
-		: title(title), author(author)
+	std::string id, title, author, issueDate, serialNumber;
+	Book(const std::string id, const std::string& title, const std::string& author, const std::string& issueDate, const std::string& serialNumber)
+		: id(id),title(title), author(author), issueDate(issueDate), serialNumber(serialNumber)
 	{
 	}
 };
