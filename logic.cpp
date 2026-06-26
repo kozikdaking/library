@@ -3,7 +3,6 @@ void Logic::choice(std::vector<Book>& books)
 {
 	do
 	{
-		std::cout << std::endl;
 		std::cout << "Witaj w bibliotece" << std::endl;
 		std::cout << "1. Zarzadzaj ksiazkami" << std::endl;
 		std::cout << "2. Wyszukaj" << std::endl;
@@ -19,11 +18,13 @@ void Logic::choice(std::vector<Book>& books)
 		case 1: // MENAGE
 		{
 			std::cout << std::endl;
-			std::cout << "1. Dodaj ksiazke" << std::endl;
-			std::cout << "2. Usun ksiazke" << std::endl;
-			std::cout << "3. Wypozycz ksiazke" << std::endl;
-			std::cout << "4. Oddaj ksiazke" << std::endl;
-			std::cout << "5. Sprawdz stan" << std::endl;
+			std::cout << "1. Dodaj ksiazke" << std::endl; //done
+			std::cout << "2. Usun ksiazke" << std::endl; //done
+			std::cout << "3. Wypozycz ksiazke" << std::endl; //to do //bool isBorrowed
+			std::cout << "4. Oddaj ksiazke" << std::endl;// to do //bool 
+			//add person class
+			std::cout << "5. Sprawdz stan" << std::endl;//done
+			std::cout << "6. Powrot do menu" << std::endl;
 
 			std::cin >> chooseMenage;
 			std::cin.ignore();
@@ -40,6 +41,11 @@ void Logic::choice(std::vector<Book>& books)
 
 			case 3:
 				std::cout << "" << std::endl;
+				//add bool
+				//show all books
+				//input data
+				//remove from vect lib -> move to borrowed
+				borrowBook(books);
 				break;
 
 			case 4:
@@ -47,19 +53,21 @@ void Logic::choice(std::vector<Book>& books)
 				break;
 
 			case 5:
+				system("cls");
 				checkBooks(books);
 				break;
 			}
-
-			break;
+			case 6:
+				break;
 		}
 
 		case 2: // SEARCH
 		{
-			std::cout << std::endl;
-			std::cout << "1. Szukaj autora" << std::endl;
-			std::cout << "2. Szukaj tytulu" << std::endl;
-			std::cout << "3. Szukaj numeru seryjnego" << std::endl;
+			system("cls");
+			std::cout << "1. Szukaj autora" << std::endl; //done
+			std::cout << "2. Szukaj tytulu" << std::endl; //done
+			std::cout << "3. Szukaj numeru seryjnego" << std::endl; //done
+			std::cout << "4. Powrot do menu" << std::endl; //done
 
 			std::cin >> chooseSearch;
 			std::cin.ignore();
@@ -77,6 +85,10 @@ void Logic::choice(std::vector<Book>& books)
 			case 3:
 				searchSerialNumber(books);
 				break;
+
+			case 4:
+				system("cls");
+				break;
 			}
 
 			break;
@@ -84,9 +96,10 @@ void Logic::choice(std::vector<Book>& books)
 
 		case 3: // SORT
 		{
-			std::cout << std::endl;
-			std::cout << "1. Sortuj po autorze" << std::endl;
-			std::cout << "2. Sortuj po tytule" << std::endl;
+			system("cls");
+			std::cout << "1. Sortuj po autorze" << std::endl; //done
+			std::cout << "2. Sortuj po tytule" << std::endl; //done
+			std::cout << "3. Powrot do menu" << std::endl; //done
 
 			std::cin >> chooseSort;
 			std::cin.ignore();
@@ -102,6 +115,10 @@ void Logic::choice(std::vector<Book>& books)
 				sortByBookTitle(books);
 				alg.showData(books);
 				break;
+			
+			case 3:
+			system("cls");
+
 			}
 
 			break;
@@ -109,8 +126,9 @@ void Logic::choice(std::vector<Book>& books)
 
 		case 4: // OTHERS
 		{
-			std::cout << std::endl;
-			std::cout << "1. Statystyki" << std::endl;
+			system("cls");
+			std::cout << "1. Statystyki" << std::endl; // to do
+			std::cout << "2. Powrot do menu" << std::endl; //done
 
 			std::cin >> chooseOthers;
 			std::cin.ignore();
@@ -120,14 +138,16 @@ void Logic::choice(std::vector<Book>& books)
 			case 1:
 				std::cout << "Brak statystyk" << std::endl;
 				break;
-
+			case 2:
+				system("cls");
+				break;
 			}
 
 			break;
 		}
 
 		case 5:
-			std::cout << "Zamykanie programu..." << std::endl;
+			system("cls");
 			break;
 		}
 
@@ -283,9 +303,26 @@ void Logic::returnBook(std::vector<Book>& books)
 	std::getline(std::cin, borrowerDateOfBirth);
 }
 
+void Logic::borrowBook(std::vector<Book>& books)
+{
+	std::cout << "Podaj numer seryjny ksiazki: ";
+	std::getline(std::cin, serialNumber);
+	books.erase(
+		std::remove_if(books.begin(), books.end(), [this](const Book& book)
+		{
+			return book.serialNumber == serialNumber;		
+		}),
+		books.end()
+		);
+}
+
+void Logic::borredBooks(std::vector<Book>& borrowedBooks)
+{
+}
+
 void Logic::checkBooks(std::vector<Book>& books)
 {
-	system("cls");
+	//system("cls");
 	alg.showData(books);
 	std::cout << "" << std::endl;
 }

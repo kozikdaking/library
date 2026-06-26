@@ -27,9 +27,10 @@ private:
 
 	Algorithms alg;
 public:
-
 	void addBook(std::vector<Book>& books);
 	void returnBook(std::vector<Book>& books);
+	void borrowBook(std::vector<Book>& books);
+	void borredBooks(std::vector<Book>& borrowedBooks);
 	void checkBooks(std::vector<Book>& books);
 	void sortByAuthor(std::vector<Book>& books);
 	void sortByBookTitle(std::vector<Book>&books);
